@@ -56,7 +56,6 @@ jobs:
         with:
           images: |
             docker.io/${{ env.IMAGE_NAME }}
-            ghcr.io/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,enable=true,priority=200,prefix=,suffix=${{github.event.inputs.caddy_ver}}-crs-${{github.event.inputs.crs_ver}},value=
 
