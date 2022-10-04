@@ -81,7 +81,9 @@ jobs:
         uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
         with:
           context: .
-          build-args: CADDY_VER=${{steps.caddy_tag.outputs.release}},CRS_VER=${{steps.crs_tag.outputs.release}}
+          build-args: |
+            CADDY_VER=${{steps.caddy_tag.outputs.release}}
+            CRS_VER=${{steps.crs_tag.outputs.release}}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
