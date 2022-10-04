@@ -99,7 +99,7 @@ jobs:
             CADDY_VER=${{github.event.inputs.caddy_ver}}
             CRS_VER=${{github.event.inputs.crs_ver}}
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: "${{github.event.inputs.caddy_ver}}-crs-${{github.event.inputs.crs_ver}}"
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -117,3 +117,4 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: echo "${{ steps.meta.outputs.tags }}" | xargs -I {} cosign sign {}@${{ steps.build-and-push.outputs.digest }}
+docker pull ghcr.io/otzarri/caddy-coraza:sha256-fcd5a463c3433c908fa7d111f47140590e509c8eb2c4b3a0acf14c451dc8cc07.sig
