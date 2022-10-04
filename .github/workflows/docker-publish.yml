@@ -99,7 +99,7 @@ jobs:
             CADDY_VER=${{github.event.inputs.caddy_ver}}
             CRS_VER=${{github.event.inputs.crs_ver}}
           push: true
-          tags: "${{github.event.inputs.caddy_ver}}-crs-${{github.event.inputs.crs_ver}}"
+          tags: "${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{github.event.inputs.caddy_ver}}-crs-${{github.event.inputs.crs_ver}}"
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
