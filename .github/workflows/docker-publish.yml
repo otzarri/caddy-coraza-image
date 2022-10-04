@@ -82,7 +82,7 @@ jobs:
         with:
           context: .
           build-args: |
-            CADDY_VER=${{steps.caddy_tag.outputs.release}}
+            CADDY_VER=${{steps.caddy_tag.outputs.id}}
             CRS_VER=${{steps.crs_tag.outputs.release}}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
