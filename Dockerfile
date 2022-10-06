@@ -16,7 +16,7 @@ RUN mkdir -p /build && cd /build &&\
 
 FROM docker.io/caddy:${CADDY_VER}
 
-RUN sed -e 's,:80 {,:80 {\n        coraza_waf {\n                include /etc/coraza.conf\n                include /usr/local/share/coreruleset/crs-setup.conf\n                include /usr/local/share/coreruleset/rules/*.conf\n        }\n,g' /etc/caddy/Caddyfile
+RUN sed -i -e 's,:80 {,{\n        order coraza_waf first\n}\n\n:80 {\n        coraza_waf {\n                include /etc/coraza.conf\n                include /usr/local/share/coreruleset/crs-setup.conf\n                include /usr/local/share/coreruleset/rules/*.conf\n        }\n,g' /etc/caddy/Caddyfile
 COPY --from=builder /build/caddy /usr/bin/
 COPY --from=builder /build/coraza.conf-recommended /etc/coraza.conf
 COPY --from=builder /build/crs/crs-setup.conf.example /usr/local/share/coreruleset/crs-setup.conf
