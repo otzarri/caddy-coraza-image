@@ -1,5 +1,0 @@
-{
-	order coraza_waf first
-}
-
-import /etc/caddy/sites/*.caddy
