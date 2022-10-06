@@ -20,7 +20,7 @@ COPY --from=builder /build/caddy /usr/bin/
 COPY --from=builder /build/coraza.conf-recommended /etc/coraza.conf
 COPY --from=builder /build/crs/crs-setup.conf.example /usr/share/coreruleset/crs-setup.conf
 COPY --from=builder /build/crs/rules /usr/share/coreruleset/
-RUN sed -i -e 's,:80 {,{\n        order coraza_waf first\n}\n\n:80 {\n        coraza_waf {\n                include /etc/coraza.conf\n                include /usr/local/share/coreruleset/crs-setup.conf\n                include /usr/local/share/coreruleset/rules/*.conf\n        }\n,g' /etc/caddy/Caddyfile
+RUN sed -i -e 's,:80 {,{\n        order coraza_waf first\n}\n\n:80 {\n        coraza_waf {\n                include /etc/coraza.conf\n                include /usr/share/coreruleset/crs-setup.conf\n                include /usr/share/coreruleset/rules/*.conf\n        }\n,g' /etc/caddy/Caddyfile
 
 WORKDIR /srv
 RUN rm -rf /tmp/*
